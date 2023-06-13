@@ -21,9 +21,9 @@ class DBManager:
         )
 
         rows = self.cur.fetchall()
-        results = [{'Компания': row[0], 'Зарплата': row[1]} for row in rows]
+        results = [{'Компания': row[0], 'Количество вакансий': row[1]} for row in rows]
 
-        return results
+        return f'Список всех компаний и количество их вакансий:\n{results}'
 
     def get_all_vacancies(self):
         """
@@ -42,7 +42,7 @@ class DBManager:
         results = [{'Компания': row[0], 'Вакансия': row[1], 'Зарплата': row[2], 'Ссылка на вакансию': row[3]} for
                    row in rows]
 
-        return results
+        return f'Список всех вакансий и информация о них:\n{results}'
 
     def get_avg_salary(self):
         """
@@ -73,7 +73,7 @@ class DBManager:
         rows = self.cur.fetchall()
         results = [{'Компания': row[0]} for row in rows]
 
-        return results
+        return f'Список вакансий, зарплата которых выше средней:\n{results}'
 
     def get_vacancies_with_keyword(self, key_word):
         """
@@ -90,4 +90,4 @@ class DBManager:
         rows = self.cur.fetchall()
         results = [{'Компания': row[0]} for row in rows]
 
-        return results
+        return f'Список всех вакансий в которых есть ключевое слово "{key_word}":\n{results}'
